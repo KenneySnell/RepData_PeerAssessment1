@@ -5,6 +5,13 @@ date: "May 27, 2017"
 output: html_document
 ---
 
+require(knitr) # required for knitting from rmd to md
+require(markdown) # required for md to html 
+knit('PA1_template.Rmd', 'PA1_template.md') # creates md file
+markdownToHTML('PA1_template.md', 'PA1_template.Rmd.html') # creates html file
+
+
+
 # Working with Activity Data
 Kenney Snell
 

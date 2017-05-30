@@ -203,26 +203,7 @@ axis(1, PlotData$interval,  cex.axis = .7)
 ```r
 maxSteps = max(PlotData$steps)
 library(dplyr)
-```
 
-```
-## 
-## Attaching package: 'dplyr'
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```r
 Maxinterval <- subset(PlotData, steps==maxSteps,select=interval)
 
 Maxinterval
@@ -549,20 +530,6 @@ New plot for Weekday and weekend
  
  # draw the line plot
 library(ggplot2)
-```
-
-```
-## 
-## Attaching package: 'ggplot2'
-```
-
-```
-## The following object is masked _by_ '.GlobalEnv':
-## 
-##     diamonds
-```
-
-```r
  j <- ggplot(StepsPerTimeDT, aes(interval, steps))
  j+geom_line(col="blue")+ggtitle("Average steps per 5 minute interval: weekdays vs. weekends")+xlab("Interval")+ylab("Steps")+theme(plot.title = element_text(face="bold", size=12))+facet_grid(wday ~ .)
 ```
