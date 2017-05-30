@@ -4,11 +4,10 @@ author: "KMS"
 date: "May 27, 2017"
 output: html_document
 ---
-
-require(knitr) # required for knitting from rmd to md
-require(markdown) # required for md to html 
+library(knitr) # required for knitting from rmd to md
+library(markdown) # required for md to html 
 knit('PA1_template.Rmd', 'PA1_template.md') # creates md file
-markdownToHTML('PA1_template.md', 'PA1_template.Rmd.html') # creates html file
+markdownToHTML('PA1_template.md', 'PA1_template.html') # creates html file
 
 
 
@@ -50,7 +49,7 @@ steps
 ```
 
 
-```{r , echo=TRUE}
+```{r plot2, echo=TRUE}
 h <- hist(histData$steps,  # Save histogram as object
           breaks = 11,  # "Suggests" 11 bins for the histogram
           freq = T,
@@ -79,7 +78,7 @@ The median of the toal number of steps per day is  `r Median_steps`.
 Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 
 
-```{r , echo=TRUE}
+```{r plot4, echo=TRUE}
 histData <-  aggregate(steps ~ date, data = activity_cpl, sum)
 Median_steps <- median(histData$steps)
 
@@ -162,7 +161,7 @@ h <- hist(histDataNew$steps,  # Save histogram as object
 ```
 
 Calculate the NEW mean and median
-```{r , echo=TRUE}
+```{r plot7 , echo=TRUE}
 Mean_stepsNew <- mean(histDataNew$steps)
 Median_stepsNew <- median(histDataNew$steps)
 ```
@@ -183,7 +182,7 @@ But the median was slightly less.
 
 a. Create a new factor variable in the dataset with two levels - "weekday" and "weekend" indicating whether a given date is a weekday or weekend day.
 
-```{r , echo=TRUE}
+```{r plot8 , echo=TRUE}
 act_df2$weekday <- weekdays(as.Date(act_df2$date))
 act_df2$date <- as.Date(act_df2$date)
 weekdays1 <- c('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday')

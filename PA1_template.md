@@ -4,11 +4,10 @@ author: "KMS"
 date: "May 27, 2017"
 output: html_document
 ---
-
-require(knitr) # required for knitting from rmd to md
-require(markdown) # required for md to html 
+library(knitr) # required for knitting from rmd to md
+library(markdown) # required for md to html 
 knit('PA1_template.Rmd', 'PA1_template.md') # creates md file
-markdownToHTML('PA1_template.md', 'PA1_template.Rmd.html') # creates html file
+markdownToHTML('PA1_template.md', 'PA1_template.html') # creates html file
 
 
 
@@ -159,7 +158,7 @@ h <- hist(histData$steps,  # Save histogram as object
           xlab = "Number of daily steps")
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png)
+![plot of chunk plot2](figure/plot2-1.png)
 
 #3. Calculate and report the mean and median of the total number of steps taken per day
 
@@ -195,7 +194,7 @@ plot(PlotData$steps ~ interval, PlotData, xaxt = "n", type = "l")
 axis(1, PlotData$interval,  cex.axis = .7)
 ```
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
+![plot of chunk plot4](figure/plot4-1.png)
 
 
 #5. The 5-minute interval that, on average, contains the maximum number of steps
@@ -273,7 +272,7 @@ h <- hist(histDataNew$steps,  # Save histogram as object
           xlab = "Number of daily steps")
 ```
 
-![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-1.png)
+![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png)
 
 Calculate the NEW mean and median
 
