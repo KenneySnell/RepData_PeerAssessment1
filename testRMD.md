@@ -1,6 +1,11 @@
-# TestRMD
-KMS  
-May 30, 2017  
+---
+title: "TestRMD"
+author: "KMS"
+date: "May 30, 2017"
+output: 
+  html_document:
+        keep_md: true
+---
 
 
 ```r
@@ -37,6 +42,6 @@ You can also embed plots, for example:
 plot(pressure)
 ```
 
-![](..//Reprducible Research//figures//pressure-1.png)<!-- -->
+![plot of chunk pressure](..//Reprducible Research//figures//pressure-1.png)
 
 
