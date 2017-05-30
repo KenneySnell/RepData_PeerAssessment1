@@ -7,7 +7,7 @@ output:
         keep_md: true
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=TRUE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -25,8 +25,8 @@ summary(cars)
 
 You can also embed plots, for example:
 
-```{r pressure, echo=FALSE,fig.width=8, fig.height=6,inlcude =TRUE}
+```{r pressure, echo=TRUE,fig.width=8, fig.height=6,inlcude =TRUE}
 plot(pressure)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+

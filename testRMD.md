@@ -3,6 +3,9 @@ KMS
 May 30, 2017  
 
 
+```r
+knitr::opts_chunk$set(echo = TRUE)
+```
 
 ## R Markdown
 
@@ -29,6 +32,11 @@ summary(cars)
 
 You can also embed plots, for example:
 
+
+```r
+plot(pressure)
+```
+
 ![](testRMD_files/figure-html/pressure-1.png)<!-- -->
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
