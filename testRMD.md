@@ -4,7 +4,7 @@ May 30, 2017
 
 
 ```r
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, fig.path = "..//Reprducible Research//figures//")
 ```
 
 ## R Markdown
@@ -37,6 +37,6 @@ You can also embed plots, for example:
 plot(pressure)
 ```
 
-![](testRMD_files/figure-html/pressure-1.png)<!-- -->
+![](..//Reprducible Research//figures//pressure-1.png)<!-- -->
 
 
