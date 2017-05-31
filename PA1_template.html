@@ -262,16 +262,9 @@ axis(1, PlotData$interval,  cex.axis = .7)</code></pre>
 <div id="the-5-minute-interval-that-on-average-contains-the-maximum-number-of-steps" class="section level1">
 <h1>5. The 5-minute interval that, on average, contains the maximum number of steps</h1>
 <pre class="r"><code>maxSteps = max(PlotData$steps)
-library(dplyr)</code></pre>
-<pre><code>## 
-## Attaching package: 'dplyr'</code></pre>
-<pre><code>## The following objects are masked from 'package:stats':
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>Maxinterval &lt;- subset(PlotData, steps==maxSteps,select=interval)
+library(dplyr)
+
+Maxinterval &lt;- subset(PlotData, steps==maxSteps,select=interval)
 
 Maxinterval</code></pre>
 <pre><code>##     interval
