@@ -7,7 +7,7 @@ May 27, 2017
 
 
 ```r
-knitr::opts_chunk$set(echo = TRUE, fig.path = ".\\figures\\")
+knitr::opts_chunk$set(echo = TRUE, fig.path = ".\\figures\\",fig.width=8, fig.height=6, inlcude =TRUE)
 getwd()
 ```
 
@@ -206,7 +206,26 @@ axis(1, PlotData$interval,  cex.axis = .7)
 ```r
 maxSteps = max(PlotData$steps)
 library(dplyr)
+```
 
+```
+## 
+## Attaching package: 'dplyr'
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+```r
 Maxinterval <- subset(PlotData, steps==maxSteps,select=interval)
 
 Maxinterval
