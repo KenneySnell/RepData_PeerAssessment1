@@ -10,8 +10,11 @@ output:
 ---
 
 
-```{r setup, include=TRUE}
+
+
+```{r setup, cache=FALSE,include=TRUE}
 knitr::opts_chunk$set(echo = TRUE, fig.path = ".\\figures\\")
+getwd()
 ```
 
 # Working with Activity Data

@@ -1,18 +1,18 @@
----
-title: "PA1_template"
-author: "KMS"
-date: "May 27, 2017"
-output:
+# PA1_template
+KMS  
+May 27, 2017  
 
-   html_document:
-      keep_md: true
-  
----
+
 
 
 
 ```r
 knitr::opts_chunk$set(echo = TRUE, fig.path = ".\\figures\\")
+getwd()
+```
+
+```
+## [1] "C:/Users/app1kms/Documents/Training/2017/R_Code/Reprducible Research"
 ```
 
 # Working with Activity Data
@@ -162,7 +162,7 @@ h <- hist(histData$steps,  # Save histogram as object
           xlab = "Number of daily steps")
 ```
 
-![plot of chunk plot2](.\figures\plot2-1.png)
+![](.\figures\plot2-1.png)<!-- -->
 
 #3. Calculate and report the mean and median of the total number of steps taken per day
 
@@ -175,7 +175,7 @@ Median_steps <- median(histData$steps)
 
 
 
-The mean  of the toal number of steps per day is 1.0766189 &times; 10<sup>4</sup>.
+The mean  of the toal number of steps per day is 1.0766189\times 10^{4}.
 The median of the toal number of steps per day is  10765.
 
 
@@ -198,7 +198,7 @@ plot(PlotData$steps ~ interval, PlotData, xaxt = "n", type = "l")
 axis(1, PlotData$interval,  cex.axis = .7)
 ```
 
-![plot of chunk plot4](.\figures\plot4-1.png)
+![](.\figures\plot4-1.png)<!-- -->
 
 
 #5. The 5-minute interval that, on average, contains the maximum number of steps
@@ -206,7 +206,26 @@ axis(1, PlotData$interval,  cex.axis = .7)
 ```r
 maxSteps = max(PlotData$steps)
 library(dplyr)
+```
 
+```
+## 
+## Attaching package: 'dplyr'
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+```r
 Maxinterval <- subset(PlotData, steps==maxSteps,select=interval)
 
 Maxinterval
@@ -276,7 +295,7 @@ h <- hist(histDataNew$steps,  # Save histogram as object
           xlab = "Number of daily steps")
 ```
 
-![plot of chunk plothist1](.\figures\plothist1-1.png)
+![](.\figures\plothist1-1.png)<!-- -->
 
 Calculate the NEW mean and median
 
@@ -286,11 +305,11 @@ Median_stepsNew <- median(histDataNew$steps)
 ```
 
 
-The NEW mean  of the toal number of steps per day is 1.0766189 &times; 10<sup>4</sup>.
-The NEW median of the toal number of steps per day is  1.0766189 &times; 10<sup>4</sup>.
+The NEW mean  of the toal number of steps per day is 1.0766189\times 10^{4}.
+The NEW median of the toal number of steps per day is  1.0766189\times 10^{4}.
 
 
-The ORIGINAL mean  of the toal number of steps per day is 1.0766189 &times; 10<sup>4</sup>.
+The ORIGINAL mean  of the toal number of steps per day is 1.0766189\times 10^{4}.
 The ORIGINAL median of the toal number of steps per day is  10765.
 
 Result are that the mean didn't vhange becuase of using the overal mean of each interval.
@@ -342,7 +361,7 @@ library(ggplot2)
  j+geom_line(col="blue")+ggtitle("Average steps per 5 minute interval: weekdays vs. weekends")+xlab("Interval")+ylab("Steps")+theme(plot.title = element_text(face="bold", size=12))+facet_grid(wday ~ .)
 ```
 
-![plot of chunk timeplot2](.\figures\timeplot2-1.png)
+![](.\figures\timeplot2-1.png)<!-- -->
 
 ###############
 
