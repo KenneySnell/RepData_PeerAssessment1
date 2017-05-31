@@ -11,7 +11,7 @@ output:
 
 
 ```{r setup, include=TRUE}
-knitr::opts_chunk$set(echo = TRUE, fig.path = "..//Reprducible Research//figures//")
+knitr::opts_chunk$set(echo = TRUE, fig.path = ".\\figures\\")
 ```
 
 # Working with Activity Data
