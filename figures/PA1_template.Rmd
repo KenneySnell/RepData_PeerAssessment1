@@ -1,0 +1,229 @@
+---
+title: "PA1_template"
+author: "KMS"
+date: "May 27, 2017"
+output:
+
+   html_document:
+      keep_md: true
+  
+---
+
+
+
+
+```{r setup, cache=FALSE,include=TRUE}
+knitr::opts_chunk$set(echo = TRUE, fig.path = ".\\figures\\")
+getwd()
+```
+
+# Working with Activity Data
+Kenney Snell
+
+## Introduction
+
+#1. Code for reading in the dataset and/or processing the data
+```{r , echo=TRUE}
+#  setwd("C:\\Users\\app1kms\\Documents\\Training\\2017\\DataScience_Downloads\\Reproducibe_Research\\repdata%2Fdata%2Factivity")
+act_df  <- read.csv("C:\\Users\\app1kms\\Documents\\Training\\2017\\DataScience_Downloads\\Reproducibe_Research\\repdata%2Fdata%2Factivity\\activity.csv")
+str(act_df)
+summary(act_df)
+
+```
+
+Process and transform the data
+```{r , echo=TRUE}
+activity_cpl <- act_df[complete.cases(act_df),]
+str(activity_cpl)
+summary(activity_cpl)
+
+
+```
+#2. Make a histogram of the total number of steps taken each day
+Calculate the total number of steps taken per day
+
+```{r , echo=TRUE}
+histData <-  aggregate(steps ~ date, data = activity_cpl, sum)
+steps <- histData
+
+```
+
+The total number of steps taken for each day is:
+
+```{r , echo=TRUE}
+steps
+```
+
+
+```{r plot2, echo=TRUE,width=8, fig.height=6, inlcude =TRUE}
+h <- hist(histData$steps,  # Save histogram as object
+          breaks = 11,  # "Suggests" 11 bins for the histogram
+          freq = T,
+          col = "thistle1", 
+          main = "Histogram of Activity",
+          xlab = "Number of daily steps")
+
+```
+
+#3. Calculate and report the mean and median of the total number of steps taken per day
+
+```{r , echo=TRUE}
+Mean_steps <- mean(histData$steps)
+Median_steps <- median(histData$steps)
+```
+
+
+
+
+The mean  of the toal number of steps per day is `r Mean_steps`.
+The median of the toal number of steps per day is  `r Median_steps`.
+
+
+#4. Time series plot of the average number of steps taken
+
+Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
+
+
+```{r plot4, echo=TRUE,width=8, fig.height=6, inlcude =TRUE}
+histData <-  aggregate(steps ~ date, data = activity_cpl, sum)
+Median_steps <- median(histData$steps)
+
+
+PlotData <-  aggregate(steps ~ interval, data = activity_cpl, mean)
+
+
+
+plot(PlotData$steps ~ interval, PlotData, xaxt = "n", type = "l")
+axis(1, PlotData$interval,  cex.axis = .7)
+```
+
+
+#5. The 5-minute interval that, on average, contains the maximum number of steps
+```{r , echo=TRUE}
+maxSteps = max(PlotData$steps)
+library(dplyr)
+
+Maxinterval <- subset(PlotData, steps==maxSteps,select=interval)
+
+Maxinterval
+
+```
+The max interval is `r Maxinterval`, for a value of `r maxSteps`.
+
+#6.Code to describe and show a strategy for imputing missing data
+
+```{r , echo=TRUE}
+for (Var in names(act_df)) {
+    missing <- sum(is.na(act_df[,Var]))
+    if (missing > 0) {
+       missing_steps <-  print(c(Var,missing))
+    }
+}
+
+
+```
+
+The total number of missing rows is `r missing_steps`.
+# 7. Histogram of the total number of steps taken each day after missing values are imputed
+
+Assign the mean of that interval for missing values
+
+```{r , echo=TRUE}
+MeanData <-  aggregate(steps ~ interval, data = activity_cpl, mean)
+
+# new Data Frame
+act_df2 <- act_df
+
+for (i in as.numeric(1: nrow(act_df))) {
+    
+    if(is.na(act_df[i,1]))  {
+   
+   
+    MeanStep <- subset(MeanData, interval==act_df$interval[i],select=steps)
+    
+    act_df2[i,1] <- MeanStep
+
+      }
+     
+    
+    }
+```
+
+
+Use the new updated data frame
+
+```{r plothist1, echo=TRUE,width=8, fig.height=6, inlcude =TRUE}
+
+
+histDataNew <-  aggregate(steps ~ date, data = act_df2, sum)
+stepsNew <- histDataNew
+h <- hist(histDataNew$steps,  # Save histogram as object
+          breaks = 11,  # "Suggests" 11 bins for the histogram
+          freq = T,
+          col = "thistle1", 
+          main = "Histogram of Activity",
+          xlab = "Number of daily steps")
+
+```
+
+Calculate the NEW mean and median
+```{r plot7 , echo=TRUE}
+Mean_stepsNew <- mean(histDataNew$steps)
+Median_stepsNew <- median(histDataNew$steps)
+```
+
+
+The NEW mean  of the toal number of steps per day is `r Mean_stepsNew`.
+The NEW median of the toal number of steps per day is  `r Median_stepsNew`.
+
+
+The ORIGINAL mean  of the toal number of steps per day is `r Mean_steps`.
+The ORIGINAL median of the toal number of steps per day is  `r Median_steps`.
+
+Result are that the mean didn't vhange becuase of using the overal mean of each interval.
+But the median was slightly less.
+
+
+# 8. Panel plot comparing the average number of steps taken per 5-minute interval across weekdays and weekends
+
+a. Create a new factor variable in the dataset with two levels - "weekday" and "weekend" indicating whether a given date is a weekday or weekend day.
+
+```{r plot8, echo=TRUE,width=8, fig.height=6, inlcude =TRUE}
+act_df2$weekday <- weekdays(as.Date(act_df2$date))
+act_df2$date <- as.Date(act_df2$date)
+weekdays1 <- c('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday')
+
+#Use `%in%` and `weekdays` to create a logical vector
+#convert to `factor` and specify the `levels/labels`
+
+act_df2$wday <- factor((weekdays(act_df2$date) %in% weekdays1), 
+         levels=c(FALSE, TRUE), labels=c('weekend', 'weekday')
+)
+head(act_df2)
+```
+
+
+New plot for Weekday and weekend
+
+
+```{r timeplot2, echo=TRUE, width=8, fig.height=6, inlcude =TRUE}
+ # create table with steps per time across weekdaydays or weekend days
+ StepsPerTimeDT <- aggregate(steps~interval+wday,data=act_df2,FUN=mean,na.action=na.omit)
+ # variable time (more comprensible for the graph axis)
+ 
+ # draw the line plot
+library(ggplot2)
+ j <- ggplot(StepsPerTimeDT, aes(interval, steps))
+ j+geom_line(col="blue")+ggtitle("Average steps per 5 minute interval: weekdays vs. weekends")+xlab("Interval")+ylab("Steps")+theme(plot.title = element_text(face="bold", size=12))+facet_grid(wday ~ .)
+ ```
+
+###############
+
+
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
