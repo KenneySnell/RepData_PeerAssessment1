@@ -6,15 +6,6 @@ May 27, 2017
 
 
 
-```r
-knitr::opts_chunk$set(echo = TRUE, fig.path = ".\\figures\\",fig.width=8, fig.height=6, inlcude =TRUE)
-getwd()
-```
-
-```
-## [1] "C:/Users/app1kms/Documents/Training/2017/R_Code/Reprducible Research"
-```
-
 # Working with Activity Data
 Kenney Snell
 
@@ -162,7 +153,7 @@ h <- hist(histData$steps,  # Save histogram as object
           xlab = "Number of daily steps")
 ```
 
-![](.\figures\plot2-1.png)<!-- -->
+![](.\figure\plot2-1.png)<!-- -->
 
 #3. Calculate and report the mean and median of the total number of steps taken per day
 
@@ -198,7 +189,7 @@ plot(PlotData$steps ~ interval, PlotData, xaxt = "n", type = "l")
 axis(1, PlotData$interval,  cex.axis = .7)
 ```
 
-![](.\figures\plot4-1.png)<!-- -->
+![](.\figure\plot4-1.png)<!-- -->
 
 
 #5. The 5-minute interval that, on average, contains the maximum number of steps
@@ -295,7 +286,7 @@ h <- hist(histDataNew$steps,  # Save histogram as object
           xlab = "Number of daily steps")
 ```
 
-![](.\figures\plothist1-1.png)<!-- -->
+![](.\figure\plothist1-1.png)<!-- -->
 
 Calculate the NEW mean and median
 
@@ -361,7 +352,7 @@ library(ggplot2)
  j+geom_line(col="blue")+ggtitle("Average steps per 5 minute interval: weekdays vs. weekends")+xlab("Interval")+ylab("Steps")+theme(plot.title = element_text(face="bold", size=12))+facet_grid(wday ~ .)
 ```
 
-![](.\figures\timeplot2-1.png)<!-- -->
+![](.\figure\timeplot2-1.png)<!-- -->
 
 ###############
 
