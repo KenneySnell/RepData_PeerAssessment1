@@ -153,7 +153,7 @@ h <- hist(histData$steps,  # Save histogram as object
           xlab = "Number of daily steps")
 ```
 
-![](.\figure\plot2-1.png)<!-- -->
+![](./figure/plot2-1.png)<!-- -->
 
 #3. Calculate and report the mean and median of the total number of steps taken per day
 
@@ -189,7 +189,7 @@ plot(PlotData$steps ~ interval, PlotData, xaxt = "n", type = "l")
 axis(1, PlotData$interval,  cex.axis = .7)
 ```
 
-![](.\figure\plot4-1.png)<!-- -->
+![](./figure/plot4-1.png)<!-- -->
 
 
 #5. The 5-minute interval that, on average, contains the maximum number of steps
@@ -286,7 +286,7 @@ h <- hist(histDataNew$steps,  # Save histogram as object
           xlab = "Number of daily steps")
 ```
 
-![](.\figure\plothist1-1.png)<!-- -->
+![](./figure/plothist1-1.png)<!-- -->
 
 Calculate the NEW mean and median
 
@@ -352,7 +352,7 @@ library(ggplot2)
  j+geom_line(col="blue")+ggtitle("Average steps per 5 minute interval: weekdays vs. weekends")+xlab("Interval")+ylab("Steps")+theme(plot.title = element_text(face="bold", size=12))+facet_grid(wday ~ .)
 ```
 
-![](.\figure\timeplot2-1.png)<!-- -->
+![](./figure/timeplot2-1.png)<!-- -->
 
 ###############
 
